@@ -44,7 +44,7 @@ SCOPES = [
 ]
 
 # Cria o cliente autenticado
-credentials = Credentials.from_service_account_file(
+credentials = Credentials.from_service_account_info(
     CREDENCIAIS_ARQUIVO,
     scopes=SCOPES
 )
