@@ -18,9 +18,9 @@ from googlesheets import abrir_aba
 # ----------------------
 # Carrega variáveis do .env
 load_dotenv()
-ABA_REF_ESCALA = os.getenv("ABA_REF_ESCALA")
-ABA_REF_DIAS_SEMANA = os.getenv("ABA_REF_DIAS_SEMANA")
-ABA_DISPONIBILIDADE = os.getenv("ABA_DISPONIBILIDADE")
+ABA_REF_ESCALA = st.secrets["ABA_REF_ESCALA"]
+ABA_REF_DIAS_SEMANA = st.secrets["ABA_REF_DIAS_SEMANA"]
+ABA_DISPONIBILIDADE = st.secrets["ABA_DISPONIBILIDADE"]
 
 sheet_ref_escalas = abrir_aba(aba_planilha=ABA_REF_ESCALA)  # já retorna a aba de referência de escalas
 sheet_ref_dias_semana = abrir_aba(aba_planilha=ABA_REF_DIAS_SEMANA)  # já retorna a aba de referência de dias da semana

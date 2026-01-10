@@ -6,6 +6,7 @@
 # 10/01/2026 | V1.0       | Versão inicial com autenticação no Google Cloud e leitura, escrita no google sheets.
 
 # Importa Bibliotecas
+import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
 from dotenv import load_dotenv
@@ -17,8 +18,22 @@ import os
 # Carrega variáveis do .env
 load_dotenv()
 
-CREDENCIAIS_ARQUIVO = os.getenv("CREDENCIAIS_ARQUIVO")
-SPREADSHEET_KEY = os.getenv("SPREADSHEET_KEY")
+CREDENCIAIS_DICT = { 
+    "type": st.secrets["GOOGLE_TYPE"],
+    "project_id": st.secrets["GOOGLE_PROJECT_ID"],
+    "private_key_id": st.secrets["GOOGLE_PRIVATE_KEY_ID"],
+    "private_key": st.secrets["GOOGLE_PRIVATE_KEY"].replace("\\n", "\n"),
+    "client_email": st.secrets["GOOGLE_CLIENT_EMAIL"],
+    "client_id": st.secrets["GOOGLE_CLIENT_ID"],
+    "auth_uri": st.secrets["GOOGLE_AUTH_URI"],
+    "token_uri": st.secrets["GOOGLE_TOKEN_URI"],
+    "auth_provider_x509_cert_url": st.secrets["GOOGLE_AUTH_PROVIDER_X509_CERT_URL"],
+    "client_x509_cert_url": st.secrets["GOOGLE_CLIENT_X509_CERT_URL"],
+    "universe_domain": st.secrets["GOOGLE_UNIVERSE_DOMAIN"]
+}
+
+CREDENCIAIS_ARQUIVO = CREDENCIAIS_DICT
+SPREADSHEET_KEY = st.secrets["SPREADSHEET_KEY"]
 
 # ----------------------
 # AUTENTICAÇÃO
