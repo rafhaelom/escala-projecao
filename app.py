@@ -8,6 +8,7 @@
 # Importa Bibliotecas
 import streamlit as st
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import time
 from dotenv import load_dotenv
 import os
@@ -130,7 +131,7 @@ if submitted:
             st.balloons()
 
             # Pega a data e hora atual para preencher campo data de criação
-            dt_agora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            dt_agora = datetime.now(ZoneInfo("America/Sao_Paulo")).strftime("%Y-%m-%d %H:%M:%S")
 
             # Converte nomes em códigos para normalização dos dados na planilha
             codigos_disponibilidade = [dias_semana[d] for d in disponibilidade]
