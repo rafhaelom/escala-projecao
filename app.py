@@ -99,7 +99,9 @@ if submitted:
 
     # Veriica se preencheu todos os campos antes de enviar
     if not referencia or not nome or not disponibilidade:
-        st.warning("Por favor, preencha todos os campos antes de enviar.", icon="⚠️")
+        st.warning("**Atenção!**\n\nPor favor, preencha todos os campos antes de enviar.", icon="⚠️")
+    elif "Não possuo disponibilidade" in disponibilidade and len(disponibilidade) > 1:
+        st.error("Se você marcar **'Não possuo disponibilidade'**, não pode selecionar outros dias.", icon="❌")
     else:
         # Verifica se nome já foi inserido anteriormente
 
@@ -122,7 +124,13 @@ if submitted:
         )
 
         if ja_existe:
-            st.warning("Você já enviou sua disponibilidade para este mês. Se precisar alterar, procure o responsável da equipe.", icon="⚠️")
+            # st.warning("Você já enviou sua disponibilidade para este mês.\n\nSe precisar alterar, procure o responsável da equipe.", icon="⚠️")
+            st.warning(
+                    "**⚠️ Atenção!**\n\n"
+                    "Você já enviou sua disponibilidade para este mês.\n\n"
+                    "Se precisar alterar, procure o responsável da equipe."
+                )
+
             if st.button("Nova resposta"):
                 st.session_state.clear()
                 st.rerun()
@@ -143,11 +151,17 @@ if submitted:
             # Limpa cache após salvar para ler os novos dados
             carregar_disponibilidades.clear()
 
+            # Prepara a lista de dias em linhas separadas com marcadores
+            dias_formatados = "\n".join(f"- {dia}" for dia in disponibilidade)
+
             # informa ao usuário no front-end os dados enviados
-            st.write("### Dados cadastrados:")
-            st.write(f"**Referência:** {referencia}")
-            st.write(f"**Nome:** {nome.strip().title()}")
-            st.write(f"**Dias disponíveis:** {', '.join(disponibilidade)}")
+            st.info(
+                f"**Dados cadastrados:**\n\n\n"
+                f"**Referência:** {referencia}\n\n"
+                f"**Nome:** {nome.strip().title()}\n\n"
+                f"**Dias disponíveis:**\n{dias_formatados}",
+                icon="ℹ️"
+            )
 
             st.divider()
 
