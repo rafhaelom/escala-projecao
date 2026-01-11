@@ -50,7 +50,11 @@ st.write("Preencha abaixo suas informações e escolha os dias que possui dispon
 # =============================
 # Busca Escalas Ativas
 # =============================
-dados_ref_escala = sheet_ref_escalas.get_all_records()
+@st.cache_data(ttl=300)
+def carregar_ref_escalas():
+    return sheet_ref_escalas.get_all_records()
+
+dados_ref_escala = carregar_ref_escalas()
 
 escalas_ativas = [
     row["ref_escala"]
@@ -61,7 +65,11 @@ escalas_ativas = [
 # =============================
 # Busca Dias Semana
 # =============================
-dias_ref = sheet_ref_dias_semana.get_all_records()
+@st.cache_data(ttl=300)
+def carregar_dias_semana():
+    return sheet_ref_dias_semana.get_all_records()
+
+dias_ref = carregar_dias_semana()
 
 dias_semana = {d["nm_dia"]: d["cd_dia"] for d in dias_ref}
 
@@ -97,7 +105,11 @@ if submitted:
         # =============================
         # Busca disponibilidades já enviadas
         # =============================
-        registros = sheet_disponibilidade.get_all_records()
+        @st.cache_data(ttl=300)
+        def carregar_disponibilidades():
+            return sheet_disponibilidade.get_all_records()
+
+        registros = carregar_disponibilidades()
 
         nome_normalizado = nome.strip().lower()
         ref_normalizada = referencia.strip().lower()
@@ -126,6 +138,9 @@ if submitted:
 
             # adiciona linha na planilha
             sheet_disponibilidade.append_row([referencia, nome.strip().lower(), codigos_disponibilidade_str, dt_agora])
+            
+            # Limpa cache após salvar para ler os novos dados
+            carregar_disponibilidades.clear()
 
             # informa ao usuário no front-end os dados enviados
             st.write("### Dados cadastrados:")
