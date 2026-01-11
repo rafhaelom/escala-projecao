@@ -1,6 +1,6 @@
 # Código: app.py
 # Autor: Rafhael Martins
-# Descrição: Código principal do WebApp de Escala de Som e Projeção da ICm Taguatinga Centro.
+# Descrição: Código principal do WebApp de Escala de Som e Projeção da ICM Taguatinga Centro.
 # Histórico de versões:
 # Data       | Versão     | Descrição
 # 10/01/2026 | V1.0       | Versão inicial apenas com cadastro de disponibilidade.
