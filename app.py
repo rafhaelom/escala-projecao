@@ -88,7 +88,7 @@ with st.form("form_disponibilidade"):
     for dia in dias_semana.keys():
         checks[dia] = st.checkbox(dia)
     
-    submitted = st.form_submit_button("Enviar")
+    submitted = st.form_submit_button("Enviar", type="primary")
 
 # =============================
 # Resultado
@@ -131,7 +131,7 @@ if submitted:
                     "Se precisar alterar, procure o responsável da equipe."
                 )
 
-            if st.button("Nova resposta"):
+            if st.button("Nova resposta", type="secondary"):
                 st.session_state.clear()
                 st.rerun()
         else:
