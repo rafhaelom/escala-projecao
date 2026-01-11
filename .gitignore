@@ -210,3 +210,4 @@ __marimo__/
 # Arquivos credenciais/temporários/extras/automáticos
 *:Zone.Identifier
 google_credentials.json
+.streamlit/

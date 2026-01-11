@@ -29,16 +29,16 @@ sheet_disponibilidade = abrir_aba(aba_planilha=ABA_DISPONIBILIDADE)  # já retor
 
 # Configuração da página e ocultar menu lateral/rodapé
 st.set_page_config(page_title="Escala de Som e Projeção", layout="centered")
-# st.markdown(
-#     """
-#     <style>
-#     #MainMenu {visibility: hidden;}
-#     footer {visibility: hidden;}
-#     header {visibility: hidden;}
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # =============================
 # Início do WebApp
